@@ -10,9 +10,9 @@ namespace Procon2017MCTProtocol
     [ServiceContract]
     public interface IProconPuzzleService {
         [OperationContract]
-        SendablePolygon Polygon();
+        void Polygon(SendablePolygon poly);
         [OperationContract]
-        string QRCode();
+        void QRCode(string code_string);
     }
 
     public struct SendablePoint {
