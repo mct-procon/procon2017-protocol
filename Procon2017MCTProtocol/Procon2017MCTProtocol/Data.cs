@@ -19,7 +19,7 @@ namespace Procon2017MCTProtocol {
         [OperationContract]
         void Polygon(SendablePolygon poly);
         [OperationContract]
-        void QRCode(string code_string);
+        void QRCode(QRCodeData codeData);
     }
 
     [DataContract]
@@ -40,5 +40,29 @@ namespace Procon2017MCTProtocol {
     public class SendablePolygon {
         [DataMember]
         public List<SendablePoint> Points { get; set; }
+
+        public SendablePolygon(int count) {
+            Points = new List<SendablePoint>(count);
+        }
+
+        public SendablePolygon() {
+            Points = new List<SendablePoint>();
+        }
+    }
+
+    [DataContract]
+    public class QRCodeData {
+        public bool IsHint { get; set; }
+
+        [DataMember]
+        public List<SendablePolygon> Polygons { get; set; }
+
+        [DataMember]
+        public List<SendablePolygon> Frames { get; set; }
+
+        public QRCodeData(List<SendablePolygon> polies, List<SendablePolygon> frames) {
+            Polygons = polies;
+            Frames = frames;
+        }
     }
 }
