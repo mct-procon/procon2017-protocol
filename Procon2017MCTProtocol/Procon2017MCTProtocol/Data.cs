@@ -14,7 +14,7 @@ namespace Procon2017MCTProtocol {
         public static readonly Uri[] ProconPuzzUri = { new Uri("http://localhost:4000/ProconPuzzle"), new Uri("http://localhost:8761/ProconPuzzle"), new Uri("http://localhost:8765/ProconPuzzle") };
     }
 
-    [ServiceContract(CallbackContract = typeof(IDuplexCallback))]
+    [ServiceContract]
     public interface IProconPuzzleService {
         [OperationContract]
         void Polygon(SendablePolygon poly);
@@ -63,14 +63,5 @@ namespace Procon2017MCTProtocol {
             Polygons = polies;
             Frames = frames;
         }
-    }
-
-    public interface IDuplexCallback
-    {
-        [OperationContract(IsOneWay = true)]
-        void Polygon(SendablePolygon polygon);
-
-        [OperationContract(IsOneWay = true)]
-        void QRCode(QRCodeData data);
     }
 }
